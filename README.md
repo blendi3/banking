@@ -35,3 +35,9 @@ Experience the Task Management App in action:
 [Banking App Live Demo](https://banking-vert-xi.vercel.app/)
 
 Feel free to create an account and test the functionality of the app!
+
+## IMPORTANT!
+## User and Password for the Plaid and Dwolla after you connect a bank
+
+- **Username**: user_good
+- **Password**: pass_good 

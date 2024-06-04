@@ -12,10 +12,10 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Horizon",
-  description: "horizon is a modern banking platform for everyone",
+  title: "Payzen",
+  description: "payzen is a modern banking platform for everyone",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/icons/bank.png",
   },
 };
 

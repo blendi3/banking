@@ -70,9 +70,28 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password,
         });
-        if (response) router.push("/");
+        if (response) {
+          router.push("/");
+        } else {
+          form.setError("password", {
+            type: "manual",
+            message: "Invalid email or password. Please try again.",
+          });
+        }
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.message === "user_already_exists") {
+        form.setError("email", {
+          type: "manual",
+          message:
+            "This email is already in use. Please use a different email.",
+        });
+      } else {
+        form.setError("email", {
+          type: "manual",
+          message: "An error occurred. Please try again.",
+        });
+      }
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -82,15 +101,15 @@ const AuthForm = ({ type }: { type: string }) => {
   return (
     <section className="auth-form">
       <header className="flex flex-col gap-5 md:gap-8">
-        <Link href="/" className="cursor-pointer flex items-center gap-1">
+        <Link href="/" className="cursor-pointer flex items-center gap-2">
           <Image
-            src="/icons/logo.svg"
-            width={34}
-            height={34}
-            alt="Horzion logo"
+            src="/icons/bank.png"
+            width={32}
+            height={32}
+            alt="Payzen logo"
           />
           <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-            Horizon
+            Payzen
           </h1>
         </Link>
 
@@ -146,7 +165,7 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="state"
                       label="State"
-                      placeholder="ex: Kosovo"
+                      placeholder="ex: NY"
                     />
                     <CostumInput
                       control={form.control}

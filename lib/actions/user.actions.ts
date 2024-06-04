@@ -104,7 +104,10 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
     });
 
     return parseStringify(newUser);
-  } catch (error) {
+  } catch (error: any) {
+    if (error.type === "user_already_exists") {
+      throw new Error("user_already_exists");
+    }
     console.error("Error", error);
   }
 };

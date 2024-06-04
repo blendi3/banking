@@ -30,7 +30,7 @@ This is a fully-featured banking app that I developed to demonstrate my skills i
 
 ## Live Demo
 
-Experience the Task Management App in action:
+Experience the Banking App in action:
 
 [Banking App Live Demo](https://banking-vert-xi.vercel.app/)
 

@@ -41,3 +41,8 @@ Feel free to create an account and test the functionality of the app!
 
 - **Username**: user_good
 - **Password**: pass_good 
+
+You can also take a look into this account: 
+
+- **Email**: test@test.com 
+- **Password**: testtest

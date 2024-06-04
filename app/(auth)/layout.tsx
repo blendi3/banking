@@ -13,7 +13,7 @@ export default function RootLayout({
           <Image
             className="rounded-l-xl border-y-4 border-l-4 border-black-1"
             src="/icons/bank-thumbnail.jpg"
-            alt="Auth Image"
+            alt="Auth Bank Images"
             width={550}
             height={550}
           />

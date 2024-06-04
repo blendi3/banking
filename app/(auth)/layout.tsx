@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Image1 from "../../public/icons/bank-thumbnail.jpg";
 
 export default function RootLayout({
   children,
@@ -12,7 +13,7 @@ export default function RootLayout({
         <div>
           <Image
             className="rounded-l-xl border-y-4 border-l-4 border-black-1"
-            src="/icons/bank-thumbnail.jpg"
+            src={Image1}
             alt="Auth Bank Images"
             width={550}
             height={550}

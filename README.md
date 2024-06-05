@@ -36,7 +36,7 @@ Experience the Banking App in action:
 
 Feel free to create an account and test the functionality of the app!
 
-## IMPORTANT!
+## !IMPORTANT
 ## User and Password for the Plaid and Dwolla after you connect a bank
 
 - **Username**: user_good

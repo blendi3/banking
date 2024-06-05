@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import Loading from "./Loading";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +30,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthanticated, setIsAuthenticated] = useState(false);
 
   const formSchema = authFormSchema(type);
 
@@ -71,6 +73,7 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
         });
         if (response) {
+          setIsAuthenticated(true);
           router.push("/");
         } else {
           form.setError("password", {
@@ -97,6 +100,10 @@ const AuthForm = ({ type }: { type: string }) => {
       setIsLoading(false);
     }
   };
+
+  if (isAuthanticated) {
+    return <Loading />;
+  }
 
   return (
     <section className="auth-form">

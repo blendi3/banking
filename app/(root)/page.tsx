@@ -5,6 +5,7 @@ import RightSidebar from "@/components/RightSidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import RecentTransactions from "@/components/RecentTransactions";
+import Banner from "@/components/Banner";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
@@ -23,6 +24,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   return (
     <section className="home">
       <div className="home-content">
+        <Banner />
         <header className="home-header">
           <HeaderBox
             type="greeting"

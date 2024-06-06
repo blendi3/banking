@@ -65,6 +65,7 @@ const AuthForm = ({ type }: { type: string }) => {
         };
         const newUser = await signUp(userData);
         setUser(newUser);
+        localStorage.setItem("showBanner", "true"); // Set the flag in local storage
       }
 
       if (type === "sign-in") {

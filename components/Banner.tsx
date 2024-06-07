@@ -27,7 +27,7 @@ const Banner = () => {
 
   return (
     <Dialog open={showBanner} onOpenChange={setShowBanner}>
-      <DialogContent className="bg-blue-200">
+      <DialogContent className="bg-blue-200 w-[350px] md:w-full">
         <DialogHeader>
           <DialogTitle>You can also connect more than one bank!</DialogTitle>
           <DialogDescription>

@@ -12,10 +12,12 @@ import {
   exchangePublicToken,
 } from "@/lib/actions/user.actions";
 import Image from "next/image";
+import Loading from "./Loading";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
   const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getLinkToken = async () => {
@@ -28,12 +30,14 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
-      await exchangePublicToken({
-        publicToken: public_token,
-        user,
-      });
-
-      router.push("/");
+      setIsLoading(true);
+      try {
+        await exchangePublicToken({ publicToken: public_token, user });
+        router.push("/");
+      } catch (error) {
+        console.error("Error exchanging public token", error);
+        setIsLoading(false);
+      }
     },
     [user]
   );
@@ -45,6 +49,9 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const { open, ready } = usePlaidLink(config);
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       {variant === "primary" ? (

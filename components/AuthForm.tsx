@@ -65,7 +65,7 @@ const AuthForm = ({ type }: { type: string }) => {
         };
         const newUser = await signUp(userData);
         setUser(newUser);
-        localStorage.setItem("showBanner", "true"); // Set the flag in local storage
+        localStorage.setItem("showBanner", "true");
       }
 
       if (type === "sign-in") {
@@ -173,7 +173,7 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="state"
                       label="State"
-                      placeholder="ex: NY"
+                      placeholder="ex: XK"
                     />
                     <CostumInput
                       control={form.control}

@@ -10,6 +10,12 @@ import Banner from "@/components/Banner";
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
+
+  if (!loggedIn) {
+    console.error("No logged-in user found");
+    return;
+  }
+
   const accounts = await getAccounts({
     userId: loggedIn.$id,
   });

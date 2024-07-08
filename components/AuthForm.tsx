@@ -9,16 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import CostumInput from "./CostumInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
@@ -97,6 +88,26 @@ const AuthForm = ({ type }: { type: string }) => {
         });
       }
       console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loginDemoAccount = async () => {
+    setIsLoading(true);
+    try {
+      const response = await signIn({
+        email: "test@test.com",
+        password: "testtest",
+      });
+      if (response) {
+        setIsAuthenticated(true);
+        router.push("/");
+      } else {
+        console.error("Demo login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred during demo login:", error);
     } finally {
       setIsLoading(false);
     }
@@ -241,6 +252,17 @@ const AuthForm = ({ type }: { type: string }) => {
               {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>
           </footer>
+
+          {type === "sign-in" && (
+            <footer className="flex justify-center gap-1">
+              <p className="text-14 font-normal text-gray-600">
+                Want to try a demo?
+              </p>
+              <button className="form-link" onClick={loginDemoAccount}>
+                Try the demo here
+              </button>
+            </footer>
+          )}
         </>
       )}
     </section>

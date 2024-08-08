@@ -58,11 +58,24 @@ export const createDwollaCustomer = async (
     return await dwollaClient
       .post("customers", newCustomer)
       .then((res) => res.headers.get("location"));
-  } catch (err) {
-    console.error("Creating a Dwolla Customer Failed: ", err);
+  } catch (err: any) {
+    if (
+      err.code === "ValidationError" &&
+      err.body._embedded.errors.some((e: any) => e.code === "Duplicate")
+    ) {
+      console.error("A customer with the specified email already exists.");
+      // Handle the duplicate email case here
+      // For example, you might want to fetch the existing customer or prompt the user to use a different email
+      const existingCustomerUrl = err.body._embedded.errors.find(
+        (e: any) => e.code === "Duplicate"
+      )._links.about.href;
+      return existingCustomerUrl;
+    } else {
+      console.error("Creating a Dwolla Customer Failed: ", err);
+      throw err;
+    }
   }
 };
-
 export const createTransfer = async ({
   sourceFundingSourceUrl,
   destinationFundingSourceUrl,
